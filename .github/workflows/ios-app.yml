@@ -6,6 +6,10 @@ on:
 permissions:
   contents: read
 
+env:
+  DM_GAME: "01006BB00C6F0000"
+  GAME: "01006BB00C6F0000"
+
 jobs:
   build-ios:
     name: Build iOS Test App
@@ -21,6 +25,7 @@ jobs:
 
       - name: Build iOS test app
         run: |
+          set -o pipefail
           mkdir -p logs
           python3 dm/ios/tools/build_smoke.py \
             --output "$RUNNER_TEMP/ios-smoke" \
